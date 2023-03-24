@@ -1,13 +1,16 @@
+from dotenv import load_dotenv
+import os
 import praw
 import discord
 from discord.ext import commands
-from reddit.subreddit_moderator import SubredditModerator
+from subreddit_moderator import SubredditModerator
 from reddit.user_flair import UserFlair
-from reddit.reddit_api_credentials import CLIENT_ID, CLIENT_SECRET, USERNAME, PASSWORD, USER_AGENT
-from discord.discord_api_credentials import TOKEN
-from discord.bot import DiscordBot
-from discord.inactivity_kick import InactivityKick
-from discord.inactivity_exceptions import EXCEPTION_LIST
+from reddit_api_credentials import CLIENT_ID, CLIENT_SECRET, USERNAME, PASSWORD, USER_AGENT
+from discord_api_credentials import DISCORD_TOKEN
+from discord_bot import bot
+from discord.inactivity_exceptions import ALLOW_LIST
+
+load_dotenv()
 
 # Initialize Reddit API credentials
 reddit = praw.Reddit(client_id=CLIENT_ID,
@@ -16,18 +19,15 @@ reddit = praw.Reddit(client_id=CLIENT_ID,
                      password=PASSWORD,
                      user_agent=USER_AGENT)
 
-# Initialize Discord bot
-bot = commands.Bot(command_prefix='!')
-discord_bot = DiscordBot(bot)
-
 # Initialize subreddit moderator
 subreddit_moderator = SubredditModerator(reddit)
 
 # Initialize user flair
 user_flair = UserFlair(reddit)
 
-# Initialize inactivity kick
-inactivity_kick = InactivityKick(bot, EXCEPTION_LIST)
+# Initialize Discord intents
+intents = discord.Intents.default()
+intents.members = True
 
 # Run Discord bot
-bot.run(TOKEN)
+bot.run(DISCORD_TOKEN)

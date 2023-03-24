@@ -134,3 +134,4 @@ dmypy.json
 
 #i dont fuckin know
 reddit_oauth_credentials.py
+discord_api_credentials.py
