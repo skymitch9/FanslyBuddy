@@ -9,6 +9,7 @@ from reddit_api_credentials import CLIENT_ID, CLIENT_SECRET, USERNAME, PASSWORD,
 from discord_api_credentials import DISCORD_TOKEN
 from discord_bot import bot
 from discord.inactivity_exceptions import ALLOW_LIST
+import subprocess
 
 load_dotenv()
 
@@ -25,9 +26,15 @@ subreddit_moderator = SubredditModerator(reddit)
 # Initialize user flair
 user_flair = UserFlair(reddit)
 
+# Start local OAuth server
+oauth_process = subprocess.Popen(['python', 'local_oauth_server.py'])
+
 # Initialize Discord intents
 intents = discord.Intents.default()
 intents.members = True
 
 # Run Discord bot
 bot.run(DISCORD_TOKEN)
+
+# Stop local OAuth server
+oauth_process.terminate()

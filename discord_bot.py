@@ -10,9 +10,11 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='/', intents=intents)
 
+
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
+
 
 @bot.command(name='kick_inactive_users')
 async def kick_inactive_users(ctx, days: int):
@@ -24,12 +26,25 @@ async def kick_inactive_users(ctx, days: int):
                 if (now - member.joined_at) > timedelta(days=days):
                     await member.kick(reason=f"Inactive for {days} days.")
 
+
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
+
     if message.content == "<@!Sky#3540>":
         response = "Misaka just works here"
         await message.channel.send(response)
 
+    print(f"Received message: {message.content}")
     await bot.process_commands(message)
+
+
+@bot.command(name='test')
+async def test(ctx):
+    response = "Hello, this is a test command."
+    print(f"Test command received from {ctx.author}: {response}")
+    await ctx.send(response)
+
+
+bot.run(DISCORD_TOKEN)
