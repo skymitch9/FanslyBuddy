@@ -6,4 +6,5 @@ reddit = reddit_oauth_credentials.create_reddit_instance()
 
 # run the test functions
 reddit_test.test_moderator(reddit)
+reddit_test.check_keywords(reddit)
 reddit_test.test_check_keywords(reddit)

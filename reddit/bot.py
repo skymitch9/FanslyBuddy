@@ -1,11 +1,13 @@
 import praw
-from reddit_api_credentials import client_id, client_secret, username, password, subreddits, allowed_keywords, denied_keywords
+from reddit_api_credentials import client_id, client_secret, username, password, subreddits
+from denylist_keywords import DENYLIST_KEYWORDS
+from allowlist_keywords import ALLOWLIST_KEYWORDS
 
-reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, username=username, password=password, user_agent="Moderation bot by u/YourUsername")
+reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, username=username, password=password, user_agent="Fansly Bot 1.0")
 
 def check_for_blacklisted_words(title, body):
     # Check if post contains any denied keywords
-    for keyword in denied_keywords:
+    for keyword in DENYLIST_KEYWORDS:
         if keyword in title.lower() or keyword in body.lower():
             return True
     return False

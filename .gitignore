@@ -110,6 +110,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# Initilization Files
+praw.ini
+.ini
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -127,3 +131,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#i dont fuckin know
+reddit_oauth_credentials.py
