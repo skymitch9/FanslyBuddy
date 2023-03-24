@@ -1,0 +1,6 @@
+praw
+discord.py
+numpy
+pandas
+rasa
+python-dotenv

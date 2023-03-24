@@ -1,0 +1,14 @@
+- rule: Respond to greetings
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Provide help
+  steps:
+  - intent: help
+  - action: utter_help
+
+- rule: Provide weather information
+  steps:
+  - intent: ask_weather
+  - action: weather_api

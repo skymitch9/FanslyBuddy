@@ -1,0 +1,5 @@
+## intent:server_info
+- What's the server information?
+- Can you tell me about the server?
+- How many users are on the server?
+- How many channels are on the server?

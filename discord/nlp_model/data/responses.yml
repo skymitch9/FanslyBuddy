@@ -1,0 +1,17 @@
+version: "2.0"
+
+responses:
+  utter_greet:
+  - text: "Hello! How can I help you?"
+  
+  utter_goodbye:
+  - text: "Goodbye! Have a nice day."
+  
+  utter_ask_server_info:
+  - text: "What would you like to know about our server?"
+  
+  utter_default:
+  - text: "I'm sorry, I didn't understand. Can you please rephrase?"
+  
+  utter_ask_help:
+  - text: "Sure, what do you need help with?"

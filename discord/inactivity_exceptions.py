@@ -1,0 +1,2 @@
+#discord server ids
+EXCEPTIONS = [133003216978837504]

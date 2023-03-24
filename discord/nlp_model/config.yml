@@ -1,0 +1,7 @@
+language: "en"
+
+pipeline:
+  - name: "WhitespaceTokenizer"
+  - name: "RegexFeaturizer"
+  - name: "CountVectorsFeaturizer"
+  - name: "EmbeddingIntentClassifier"
