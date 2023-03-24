@@ -23,12 +23,16 @@ def test_moderator(reddit):
             check_keywords(post)
 
 def check_keywords(post):
-    title = post.title.lower()
-    body = post.selftext.lower()
-    if any(keyword in title or keyword in body for keyword in ALLOWLIST_KEYWORDS):
-        print(f"Post {post.id} matches keyword in title or body")
+    if isinstance(post, praw.models.reddit.submission.Submission):
+        title = post.title.lower() if post.title else ""
+        body = post.selftext.lower() if post.selftext else ""
+        if any(keyword in title or keyword in body for keyword in ALLOWLIST_KEYWORDS):
+            print(f"Post {post.id} matches keyword in title or body")
+    else:
+        print(f"Invalid post object: {post}")
 
-def test_check_keywords():
+
+def test_check_keywords(post):
     reddit = praw.Reddit(
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
@@ -37,11 +41,11 @@ def test_check_keywords():
         user_agent=USER_AGENT,
     )
 
-    subreddit = reddit.subreddit("test")
+    subreddit = reddit.subreddit("fansly")
 
     post = subreddit.submit(
         "Test post with keyword",
-        selftext="This post contains the word python",
+        selftext="This post contains the word scam",
         send_replies=False,
     )
 
