@@ -26,25 +26,26 @@ async def kick_inactive_users(ctx, days: int):
                 if (now - member.joined_at) > timedelta(days=days):
                     await member.kick(reason=f"Inactive for {days} days.")
 
+@bot.command(name='test')
+async def test(ctx):
+    response = "Hello, this is a test command."
+    print(f"Test command received from {ctx.author}: {response}")
+    await ctx.send(response)
 
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
 
-    if message.content == "<@!Sky#3540>":
-        response = "Misaka just works here"
+    if bot.user in message.mentions:
+        if len(message.content.split()) == 1:  # check if there is no additional message content
+            response = "Misaka just works here"
+        else:
+            response = "Hi"
         await message.channel.send(response)
 
     print(f"Received message: {message.content}")
     await bot.process_commands(message)
-
-
-@bot.command(name='test')
-async def test(ctx):
-    response = "Hello, this is a test command."
-    print(f"Test command received from {ctx.author}: {response}")
-    await ctx.send(response)
 
 
 bot.run(DISCORD_TOKEN)

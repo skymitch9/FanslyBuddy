@@ -18,3 +18,5 @@ class OAuthHandler(http.server.SimpleHTTPRequestHandler):
 with socketserver.TCPServer(("", PORT), OAuthHandler) as httpd:
     print("serving at port", PORT)
     httpd.serve_forever()
+
+# To stop the server, use httpd.shutdown()
